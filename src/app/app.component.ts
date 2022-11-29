@@ -25,5 +25,3 @@ onBlueprintAdded(blueprintData: {serverName: string, serverContent:string})
   })
 }
 }
-
-
