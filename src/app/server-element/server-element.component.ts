@@ -1,3 +1,4 @@
+import { createViewChild } from '@angular/compiler/src/core';
 import { Component,
 OnInit,
 Input,
@@ -10,6 +11,8 @@ AfterContentChecked,
 AfterViewInit,
 AfterViewChecked,
 OnDestroy,
+ViewChild,
+ElementRef,
 
 } from '@angular/core';
 @Component({
@@ -29,12 +32,15 @@ OnDestroy,
 AfterViewChecked {
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input('name') name: string;
-  constructor() { }
+  @ViewChild('heading') header: ElementRef;
+  constructor() {
+  }
 
   ngOnChanges(changes: SimpleChanges) {
   }
 
   ngOnInit() {
+    console.log('Text Content:' + this.header.nativeElement.textContent)
   }
 
   ngDoCheck() {
