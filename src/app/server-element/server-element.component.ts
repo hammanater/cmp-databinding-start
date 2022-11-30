@@ -13,6 +13,7 @@ AfterViewChecked,
 OnDestroy,
 ViewChild,
 ElementRef,
+ContentChild,
 
 } from '@angular/core';
 @Component({
@@ -29,17 +30,27 @@ AfterContentInit,
 AfterContentChecked,
 AfterViewInit,
 OnDestroy,
-AfterViewChecked {
+AfterViewChecked,
+ContentChild {
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input('name') name: string;
   @ViewChild('heading') header: ElementRef;
+  @ContentChild('contentParagraph') paragraph: ElementRef;
   constructor() {
   }
+  descendants: boolean;
+  emitDistinctChangesOnly: boolean;
+  first: boolean;
+  read: any;
+  isViewQuery: boolean;
+  selector: any;
+  static?: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
   }
 
   ngOnInit() {
+    console.log('Text Content of paragraph:' + this.paragraph.nativeElement.textContent)
     console.log('Text Content:' + this.header.nativeElement.textContent)
   }
 
@@ -47,6 +58,7 @@ AfterViewChecked {
   }
 
   ngAfterContentInit() {
+    console.log('Text Content:' + this.header.nativeElement.textContent)
   }
 
   ngAfterContentChecked() {
@@ -60,4 +72,6 @@ AfterViewChecked {
 
   ngOnDestroy() {
   }
+
+
 }
